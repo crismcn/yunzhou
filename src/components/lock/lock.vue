@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div class="lock-container" v-show="appStore.locked">
+    <div class="lock-container" data-tauri-drag-region v-show="appStore.locked">
       <div class="content">
         <Lottie class="lottie" :animation-data="Unlock"></Lottie>
         <span class="text">输入PIN码解锁软件</span>
@@ -71,7 +71,7 @@ const onFinish = (e: any) => {
     backdrop-filter: blur(0px);
   }
   100% {
-    backdrop-filter: blur(100px);
+    backdrop-filter: blur(40px);
   }
 }
 

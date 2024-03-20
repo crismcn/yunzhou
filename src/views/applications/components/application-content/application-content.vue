@@ -31,7 +31,7 @@
     </div>
     <applicationInfo v-model:visible="applicationStore.showApplicationInfo" />
   </div>
-  <a-empty class="empty" v-else />
+  <a-empty class="empty" data-tauri-drag-region v-else />
 </template>
 
 <script lang="ts" setup>
