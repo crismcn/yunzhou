@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs">
+  <div class="tabs" data-tauri-drag-region>
     <a-space class="tab-item tab-item--active">
       <IconFont name="icon-typescript1" :size="20"></IconFont>
       <span class="tab-name">xcodeDark</span>
@@ -13,14 +13,10 @@
   </div>
 </template>
 
-
-
 <script lang="ts" setup>
-import { ref, onMounted } from "vue"
+import { ref, onMounted } from 'vue'
 import IconFont from '@/components/iconfont/iconfont.vue'
-import Editor from "./editor.vue"
-
-
+import Editor from './editor.vue'
 </script>
 
 <style lang="less" scoped>
