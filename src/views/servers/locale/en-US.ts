@@ -1,0 +1,22 @@
+export default {
+  'server.title.add': 'Add Server',
+  'server.title.edit': 'Edit Server',
+  'server.name': 'Server Name',
+  'server.name.placeholder': 'Please enter server name',
+  'server.address': 'Address',
+  'server.address.placeholder': 'Please enter address',
+  'server.remark': 'Remark',
+  'server.remark.placeholder': 'Please enter remark',
+  'server.auth-method': 'Auth Method',
+  'server.auth-method.placeholder': 'Please select auth method',
+  'server.auth-method.secret': 'Secret',
+  'server.auth-method.secret.placeholder': 'Please enter secret',
+  'server.auth-method.passwd': 'Password',
+  'server.auth-method.passwd.placeholder': 'Please enter password',
+
+  'server.op.delete': 'Delete',
+  'server.op.delete.placeholder': 'Are you sure you want to delete?',
+  'server.op.back': 'Back',
+  'server.op.reset': 'Reset',
+  'server.op.valid': 'Valid',
+}

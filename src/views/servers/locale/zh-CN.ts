@@ -1,0 +1,22 @@
+export default {
+  'server.title.add': '添加主机',
+  'server.title.edit': '编辑主机',
+  'server.name': '主机名称',
+  'server.name.placeholder': '请输入主机名称',
+  'server.address': '连接地址',
+  'server.address.placeholder': '请输入完整的连接地址',
+  'server.remark': '备注标签',
+  'server.remark.placeholder': '请输入备注标签',
+  'server.auth-method': '授权方式',
+  'server.auth-method.placeholder': '请选择授权方式',
+  'server.auth-method.secret': '独立密钥',
+  'server.auth-method.secret.placeholder': '请输入密钥',
+  'server.auth-method.passwd': '账户密码',
+  'server.auth-method.passwd.placeholder': '请输入密码',
+
+  'server.op.delete': '删除',
+  'server.op.delete.placeholder': '确定要删除主机信息吗？',
+  'server.op.back': '返回',
+  'server.op.reset': '重置',
+  'server.op.valid': '验证',
+}
