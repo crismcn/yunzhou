@@ -6,8 +6,8 @@
           <template #icon>
             <icon-plus />
           </template>
-          Session
-        </a-button> -->
+Session
+</a-button> -->
         <a-empty>
           <template #image>
             <icon-code />
@@ -26,7 +26,7 @@ import { getParentElByClname, formatInsetCss, dropPositionMap, splitDirectionMap
 import Split from './splite.vue'
 import SplitWindow from './split-window.vue'
 // import { IconLayout } from '@arco-design/web-vue/es/icon';
-import { themes, font } from './themes'
+// import { themes, font } from './themes'
 
 const componentIns: any = getCurrentInstance()
 
@@ -35,32 +35,32 @@ const renderSlot = (slot: any, params?: any) => {
   return slot && slot(params)[0]
 }
 
-const { createTabActions, createAddBtn, createClose, createTab, createTabView, activeLabelClassName, onCloseWindow, canCloseWindow, activeTabKeySync, windowListSync, layoutClass, generateWindowConfig } = defineProps({
+const { createTabActions, createAddBtn, createClose, createTab, createTabView, activeLabelClassName, canCloseWindow, activeTabKeySync, windowListSync, layoutClass, generateWindowConfig } = defineProps({
   showPlaceHolder: {
     type: Boolean,
     default: true,
   },
   createTabActions: {
     type: Function,
-    default: (window: any) => {
+    default: (___window: any) => {
       return null
     },
   },
   createAddBtn: {
     type: Function,
-    default: (win: any) => null,
+    default: (___win: any) => null,
   },
   createClose: {
     type: Function,
-    default: (win: any) => null,
+    default: (___win: any) => null,
   },
   createTab: {
     type: Function,
-    default: (win: any) => null,
+    default: (___win: any) => null,
   },
   createTabView: {
     type: Function,
-    default: (win: any) => null,
+    default: (___win: any) => null,
   },
   activeLabelClassName: {
     type: String,
@@ -68,11 +68,11 @@ const { createTabActions, createAddBtn, createClose, createTab, createTabView, a
   },
   canCloseWindow: {
     type: Function,
-    default: async (win: any, e: any) => true,
+    default: async (___win: any, ___e: any) => true,
   },
   onCloseWindow: {
     type: Function,
-    default: (win: any, e: any) => {},
+    default: (___win: any, ___e: any) => { },
   },
   activeTabKeySync: {
     type: [String, Number],
@@ -121,7 +121,7 @@ const SplitSvg = h(
 )
 
 // 默认渲染的分屏按钮dom
-const tabActionsDefault = (win: any) => {
+const tabActionsDefault = (_win: any) => {
   return [
     h(
       'div',
@@ -149,7 +149,7 @@ const tabActionsDefault = (win: any) => {
   ]
 }
 // 默认渲染的标签页dom
-const tabViewDefault = (win: any) => {
+const tabViewDefault = (_win: any) => {
   return h('div', null, [h('h3', null, 'THIS SHOW YOUR CONTENT..')])
 }
 
@@ -180,7 +180,7 @@ watch(activeTabKey, (nv) => {
 const getActiveWindow = () => {
   return windowList.value.find((win: any) => win.key == activeTabKey.value)
 }
-const labelClick = (key: any, event: any) => {
+const labelClick = (key: any, _event: any) => {
   activeTab(key)
 }
 
@@ -206,9 +206,6 @@ const activeTab = (key: any) => {
   if (windowList.value.length) emits('resize', {})
 }
 
-function bindRef(elRef: any) {
-  elRef.__vueRef = elRef
-}
 
 function handleResize(event: any) {
   emits('resize', event)
@@ -228,7 +225,7 @@ const dragData = reactive<any>({
 })
 
 function handleDragStart(event: any) {
-  const { target, x, y } = event
+  const { target } = event
   dragData.isUpdating = true
   dragData.target = target
   dragData.tabKey = target.getAttribute('tabKey')
@@ -238,7 +235,6 @@ function handleDragOver(event: any) {
   event.preventDefault()
   if (!dragData.isUpdating) return
   let { target, x, y } = event
-  const nodeRect = target.getBoundingClientRect()
   const targetAvailible = getParentElByClname(target, 'split_view_label_wrapper') ?? getParentElByClname(target, 'split_view_content')
   if (!targetAvailible) return
   dragData.respectLayout = targetAvailible
@@ -338,7 +334,7 @@ const targetDomTypeMap = {
 }
 function handleDragDrop(event: any) {
   handleDragDropPrevent(event)
-  const { target, x, y } = event
+  const { target } = event
   // 计算拖拽目标dom类型
   let targetCalc, targetDomType
   if (getParentElByClname(target, 'split_view_label_wrapper')) {
@@ -495,24 +491,6 @@ const templateContent = (win: any) => {
     [renderSlot(TabView, win) || createTabView(win) || tabViewDefault(win)]
   )
 }
-const svgArrowRight = h(
-  'svg',
-  {
-    t: '1679533237927',
-    class: 'icon',
-    viewBox: '0 0 1024 1024',
-    version: '1.1',
-    xmlns: 'http://www.w3.org/2000/svg',
-    'p-id': '2333',
-    width: '18',
-    height: '18',
-  },
-  h('path', {
-    d: 'M320 885.333333c-8.533333 0-17.066667-4.266667-23.466667-10.666666-12.8-12.8-10.666667-34.133333 2.133334-44.8L654.933333 512 298.666667 194.133333c-12.8-10.666667-14.933333-32-2.133334-44.8 10.666667-12.8 32-14.933333 44.8-2.133333l384 341.333333c6.4 6.4 10.666667 14.933333 10.666667 23.466667 0 8.533333-4.266667 17.066667-10.666667 23.466667l-384 341.333333c-6.4 6.4-12.8 8.533333-21.333333 8.533333z',
-    fill: '#ffffff',
-    'p-id': '2334',
-  })
-)
 const templateSplitView = (label: any, content: any) => {
   return h('div', { class: 'split_view' }, [
     h('div', { class: 'split_content_wrapper flex column' }, [
@@ -541,7 +519,7 @@ const templateSplitView = (label: any, content: any) => {
               'div',
               {
                 class: 'add_btn_wrapper',
-                onclick: (e: any) => {
+                onclick: (_e: any) => {
                   newWindow()
                 },
               },
@@ -592,23 +570,6 @@ const templateLayout = (win: any) => {
 }
 
 // 滚动标签栏
-const scrollLabelBox = (e: any, direction = 'pre') => {
-  const labelParentWrapper = getParentElByClname(e.target, 'split_view_label_wrapper')
-  const labelWrapper = labelParentWrapper.querySelector('.split_view_label_box.flex')
-  // console.log("labelWrapper :>> ", labelWrapper);
-  // console.log("offsetX :>> ", labelWrapper.offsetX);
-  // console.log("left :>> ", labelWrapper.left);
-  // console.log("getBoundingClientRect :>> ", labelWrapper.getBoundingClientRect());
-  switch (direction) {
-    case 'pre':
-      labelWrapper.style.transform = `translateX(200px)`
-
-      break
-    case 'next':
-      labelWrapper.style.transform = `translateX(-200px)`
-      break
-  }
-}
 
 // vnode2dom
 function vnode2dom(vnode: any) {
@@ -723,7 +684,7 @@ function closeWindowPost(params: any, target: any) {
     if (isEmptySplitContainerEl(splitContainer)) {
       try {
         splitContainerParent.removeChild(splitContainer)
-      } catch (error) {}
+      } catch (error) { }
     }
 
     // 清理多余布局
@@ -738,7 +699,7 @@ function resetActiveTabKey(win: any) {
 }
 
 //清理多余布局
-function clearUselessLayout(elNode: any) {
+function clearUselessLayout(_elNode: any) {
   const multiSplitContainer: any = document.querySelectorAll('.split_container:has(.split_container)')
   for (const elOut of multiSplitContainer) {
     if (elOut.children.length == 1) {

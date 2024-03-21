@@ -13,7 +13,8 @@
         <div class="card">
           <div class="item wrap" style="margin-top: -8px">
             <span style="width: 180px">{{ $t('setting.disk-space') }}</span>
-            <a-progress size="large" :show-text="false" :percent="spaceInfo.spaceUsagePercent" animation trackColor="var(--color-primary-light-1)" />
+            <a-progress size="large" :show-text="false" :percent="spaceInfo.spaceUsagePercent" animation
+              trackColor="var(--color-primary-light-1)" />
             <span style="padding: 0 50px 0 16px">{{ spaceInfo.spaceUsagePercent }}%</span>
             <a-button @click="onClearLogFileSpace">{{ $t('setting.disk-space.clear') }}</a-button>
             <div class="space-info">
@@ -211,13 +212,13 @@
 import { ref } from 'vue'
 import PIN from './components/pin/pin.vue'
 
-const OnSetTheme = (e: any) => {}
+const OnSetTheme = (_e: any) => { }
 
-const onSetStartUp = async (e: any) => {}
+const onSetStartUp = async (_e: any) => { }
 
-const onClearLogFileSpace = async () => {}
+const onClearLogFileSpace = async () => { }
 
-const onChangeLanguage = async (e: any) => {}
+const onChangeLanguage = async (_e: any) => { }
 
 const spaceInfo = ref({
   freeSpace: 10,
@@ -229,10 +230,12 @@ const spaceInfo = ref({
 <style lang="less" scoped>
 .container {
   display: flex;
+
   .sider {
     width: 240px;
     box-sizing: border-box;
     border-right: solid 1px var(--color-neutral-2);
+
     .label {
       cursor: pointer;
       position: relative;
@@ -247,8 +250,10 @@ const spaceInfo = ref({
       box-sizing: border-box;
     }
   }
+
   .content {
     width: 100%;
+
     // width: calc(100% - 240px);
     .label {
       padding: 0 14px;
@@ -256,6 +261,7 @@ const spaceInfo = ref({
       font-weight: 600;
       line-height: 32px;
     }
+
     .card {
       margin: 18px 16px;
       margin-top: 2px;
@@ -265,6 +271,7 @@ const spaceInfo = ref({
       border: solid 1px var(--color-neutral-2);
       box-shadow: -1px 3px 5px var(--color-neutral-1);
       box-sizing: border-box;
+
       .item {
         position: relative;
         width: 50%;
@@ -274,6 +281,7 @@ const spaceInfo = ref({
         align-items: center;
         justify-content: space-between;
         color: var(--color-text-2);
+
         .space-info {
           display: flex;
           align-items: center;
@@ -281,36 +289,44 @@ const spaceInfo = ref({
           bottom: 12px;
           font-size: 10px;
           color: var(--color-text-3);
+
           .usage,
           .free {
             height: 10px;
             width: 10px;
           }
+
           .usage {
             background: rgb(var(--primary-6));
           }
+
           .free {
             background: var(--color-primary-light-2);
           }
         }
+
         .link-computer {
           cursor: pointer;
           font-size: 14px;
+
           &:hover {
             color: rgb(var(--primary-6));
           }
         }
+
         .input {
           max-width: 68%;
           min-width: 268px;
         }
       }
+
       .wrap {
         width: 100%;
       }
     }
   }
 }
+
 // :deep(.arco-input-wrapper) {
 //   background: var(--color-bg-1);
 //   border: solid 1px var(--color-neutral-3);
@@ -323,5 +339,4 @@ const spaceInfo = ref({
 //   border: 1px solid var(--color-neutral-3);
 //   border-left: none;
 //   background-image: linear-gradient(to bottom right, var(--color-bg-1), var(--color-neutral-1));
-// }
-</style>
+// }</style>

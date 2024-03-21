@@ -56,8 +56,8 @@
 </template>
 
 <script lang="ts" setup>
-import { h } from 'vue'
-import { IconMoon, IconSun, IconDesktop } from '@arco-design/web-vue/es/icon'
+// import { h } from 'vue'
+// import { IconSun } from '@arco-design/web-vue/es/icon'
 import IconFont from '@/components/iconfont/iconfont.vue'
 import { useRouter } from 'vue-router'
 
@@ -89,12 +89,12 @@ const onSelect = async (e: any) => {
   }
 }
 
-const IconTheme: any = {
-  render: () => {
-    let icon = IconSun
-    return h(icon)
-  },
-}
+// const IconTheme: any = {
+//   render: () => {
+//     let icon = IconSun
+//     return h(icon)
+//   },
+// }
 </script>
 
 <style lang="less" scoped>

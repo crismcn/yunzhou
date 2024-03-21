@@ -126,8 +126,8 @@ const initXterm = () => {
 }
 
 // 设置ssh会话窗体大小
-const resizeSshSession = ({ cols, rows }: any) => {
-  // console.log({ cols, rows })
+const resizeSshSession = (_e: any) => {
+  // { cols, rows } = e
   // socket.send({ event: "resize", data: `${cols};${rows}` });
 }
 // 设置界面xterm会话大小

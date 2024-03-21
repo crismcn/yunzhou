@@ -22,7 +22,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 
-const props = defineProps({
+defineProps({
   modelValue: {
     type: Array,
     default() {
@@ -35,7 +35,7 @@ const emit = defineEmits(["update:modelValue"]);
 //   emit("update:modelValue", !props.modelValue);
 // };
 
-const checkedAll = ref(false);
+// const checkedAll = ref(false);
 
 const servers = ref(["127.17.17.17 测试环境", "47.0.22.132 演示环境", "153.0.110.27 生产环境"])
 

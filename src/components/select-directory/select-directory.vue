@@ -41,7 +41,7 @@ const selectDirectory = async () => {
 onMounted(() => {
   path.value = props.modelValue
 });
-watch(() => props.modelValue, (newValue, oldValue) => {
+watch(() => props.modelValue, (newValue, _oldValue) => {
   path.value = newValue
 })
 </script>

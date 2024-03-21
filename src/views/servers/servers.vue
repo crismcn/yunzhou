@@ -5,7 +5,7 @@
       <Collspan v-model="collspanStatus" />
     </a-layout-sider>
     <a-layout-content id="layoutContent" class="layout-content">
-      <!-- <ServerContent /> -->
+      <ServerContent />
       <ServerInfo v-model:visible="serverStore.showServerInfo" />
       <CodeMirror />
     </a-layout-content>

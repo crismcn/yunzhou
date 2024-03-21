@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { CodeMirrorState } from './types'
-import { setItem, getItem } from '@/common'
+// import { setItem, getItem } from '@/common'
 
 const useCodeMirrorStore = defineStore('app', {
   state: (): CodeMirrorState => ({
@@ -8,7 +8,7 @@ const useCodeMirrorStore = defineStore('app', {
   }),
   getters: {},
   actions: {
-    setTheme(v: string) {},
+    setTheme(_v: string) {},
   },
 })
 

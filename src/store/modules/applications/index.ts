@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import { ApplicationState } from './types'
-import { setItem, getItem } from '@/common'
 
 const useApplicationStore = defineStore('app', {
   state: (): ApplicationState => ({

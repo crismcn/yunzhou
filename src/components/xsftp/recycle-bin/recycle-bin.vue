@@ -2,7 +2,8 @@
   <div class="recycle-list">
     <div class="header">
       <a-space>
-        <a-switch type="round" @change="onToggleRecycleBin" :checked-value="1" :unchecked-value="0" v-model:model-value="serverInfo.recycleBin">
+        <a-switch type="round" @change="onToggleRecycleBin" :checked-value="1" :unchecked-value="0"
+          v-model:model-value="serverInfo.recycleBin">
           <template #checked-icon>
             <icon-check />
           </template>
@@ -20,19 +21,14 @@
         </a-popconfirm>
       </a-space>
     </div>
-    <a-table :loading="loading" :data="list" :bordered="false" :pagination="false" size="small" :scroll="{ y: 570 }" :scrollbar="false">
+    <a-table :loading="loading" :data="list" :bordered="false" :pagination="false" size="small" :scroll="{ y: 570 }"
+      :scrollbar="false">
       <template #columns>
-        <a-table-column
-          :title="$t('xsftp.recycle.file-name')"
-          data-index="name"
-          ellipsis
-          tooltip
-          :filterable="{
-            filter: (value, record) => record.name.includes(value),
-            slotName: 'name-filter',
-            icon: () => h(IconSearch),
-          }"
-        >
+        <a-table-column :title="$t('xsftp.recycle.file-name')" data-index="name" ellipsis tooltip :filterable="{
+          filter: (value, record) => record.name.includes(value),
+          slotName: 'name-filter',
+          icon: () => h(IconSearch),
+        }">
           <template #cell="{ record }">
             <span :class="[record.isDir ? 'folder' : 'unfolder', 'name']">
               <icon-folder v-if="record.isDir" size="15" />
@@ -44,12 +40,14 @@
         <a-table-column :title="$t('xsftp.recycle.origin-path')" data-index="originPath" ellipsis tooltip>
           <template #cell="{ record }">{{ record.originPath }} </template>
         </a-table-column>
-        <a-table-column :title="$t('xsftp.recycle.file-size')" data-index="size" align="center" :sortable="{ sortDirections: ['descend'] }" :width="100">
+        <a-table-column :title="$t('xsftp.recycle.file-size')" data-index="size" align="center"
+          :sortable="{ sortDirections: ['descend'] }" :width="100">
           <template #cell="{ record }">
             {{ record.isDir ? '-' : FormatBytes(record.size) }}
           </template>
         </a-table-column>
-        <a-table-column :title="$t('xsftp.recycle.del-date')" data-index="size" align="center" :sortable="{ sortDirections: ['descend'] }" :width="140">
+        <a-table-column :title="$t('xsftp.recycle.del-date')" data-index="size" align="center"
+          :sortable="{ sortDirections: ['descend'] }" :width="140">
           <template #cell="{ record }">{{ record.deleteDate }}</template>
         </a-table-column>
         <a-table-column :title="$t('xsftp.recycle.op')" data-index="status" align="center" :width="80">
@@ -70,7 +68,9 @@
       </template>
       <template #name-filter="{ filterValue, setFilterValue, handleFilterConfirm, handleFilterReset }">
         <div class="filter-name">
-          <a-input-search :model-value="filterValue[0]" @input="(value: any) => setFilterValue([value])" @change="handleFilterConfirm" @clear="handleFilterReset" size="small" style="width: 320px" allow-clear search-button />
+          <a-input-search :model-value="filterValue[0]" @input="(value: any) => setFilterValue([value])"
+            @change="handleFilterConfirm" @clear="handleFilterReset" size="small" style="width: 320px" allow-clear
+            search-button />
         </div>
       </template>
     </a-table>
@@ -101,7 +101,7 @@ const onClear = async () => {
   loading.value = false
 }
 // 删除/恢复回收站文件
-const onActions = async (e: any) => {
+const onActions = async (_e: any) => {
   loading.value = true
   // const { t, v } = e
   // const { id, serverId } = v
@@ -119,7 +119,7 @@ const onActions = async (e: any) => {
 }
 
 // 开启/关闭回收站功能
-const onToggleRecycleBin = async (e: any) => {
+const onToggleRecycleBin = async (_e: any) => {
   // const serverId = serverInfo.value.id
   // await ToggleRecycleBin(serverId, e)
 }
@@ -141,41 +141,51 @@ onMounted(() => {
   position: relative;
   padding: 10px;
   width: calc(100% - 20px);
+
   .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-bottom: 10px;
+
     .options {
       display: flex;
     }
   }
+
   .icon-more {
     font-size: 16px;
     color: var(--color-text-1);
   }
 }
+
 .filter-name {
   padding: 10px 12px;
   background-color: var(--color-bg-1);
   border-radius: var(--border-radius-small);
 }
+
 .name {
   cursor: pointer;
   font-size: 13px;
+
   &:hover {
     color: rgb(var(--primary-6));
   }
 }
+
 .folder {
   color: rgb(var(--primary-4));
 }
+
 .unfolder {
   color: var(--color-text-2);
 }
+
 :deep(.arco-table-tr) {
   background-image: linear-gradient(to bottom right, var(--color-bg-1), var(--color-neutral-1));
 }
+
 :deep(.arco-table-size-small .arco-table-td) {
   font-size: 12px;
   color: var(--color-text-2) !important;

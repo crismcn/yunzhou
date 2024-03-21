@@ -14,9 +14,9 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
+// import { ref, onMounted } from 'vue'
 import IconFont from '@/components/iconfont/iconfont.vue'
-import Editor from './editor.vue'
+// import Editor from './editor.vue'
 </script>
 
 <style lang="less" scoped>

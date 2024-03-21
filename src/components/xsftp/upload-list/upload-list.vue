@@ -17,11 +17,16 @@
         </template>
       </a-dropdown>
       <a-space>
-        <a-popconfirm v-if="list.length && ![0, 1].includes(progress)" position="left" type="warning" :content="$t('xsftp.upload.cancel.tip')" @ok="onCancel">
+        <a-popconfirm v-if="list.length && ![0, 1].includes(progress)" position="left" type="warning"
+          :content="$t('xsftp.upload.cancel.tip')" @ok="onCancel">
           <a-button size="small">{{ $t('xsftp.upload.cancel') }}</a-button>
         </a-popconfirm>
-        <a-button v-else size="small" @click="onCancel">{{ progress == 1 ? $t('xsftp.upload.bcak') : $t('xsftp.upload.cancel') }}</a-button>
-        <a-button :loading="uploading" @click="onUpload" type="primary" size="small">{{ $t('xsftp.upload.start-uploading') }}</a-button>
+        <a-button v-else size="small" @click="onCancel">{{ progress == 1 ? $t('xsftp.upload.bcak') :
+          $t('xsftp.upload.cancel')
+          }}</a-button>
+        <a-button :loading="uploading" @click="onUpload" type="primary" size="small">{{
+          $t('xsftp.upload.start-uploading')
+        }}</a-button>
       </a-space>
     </div>
     <a-table :data="list" :bordered="false" :pagination="false" size="small" :scroll="{ y: 530 }" :scrollbar="false">
@@ -45,14 +50,15 @@
       </template>
     </a-table>
     <div class="progress">
-      <a-progress :percent="progress" animation :color="{ '0%': 'rgb(var(--primary-6))', '100%': 'rgb(var(--success-6))' }" size="small" />
+      <a-progress :percent="progress" animation
+        :color="{ '0%': 'rgb(var(--primary-6))', '100%': 'rgb(var(--success-6))' }" size="small" />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
-import { FormatBytes, UploadMFC } from '@/common'
+import { FormatBytes } from '@/common'
 // import { AbortUploadChunkFile, UploadChunkFile } from '../../../rpc'
 
 const props = defineProps({
@@ -89,7 +95,7 @@ const onUpload = async () => {
   cancelFlag.value = false
 }
 
-const uploadFileToServer = async (e: any) => {}
+// const uploadFileToServer = async (e: any) => { }
 
 const emit = defineEmits(['cancel', 'actions'])
 const cancelFlag = ref(false)
@@ -100,20 +106,20 @@ const onCancel = () => {
   emit('actions', { t: 'cancelUpload', v: {} })
 }
 
-const onProgress = (id: string, percent: number, status: boolean) => {
-  // 更新单项进度条
-  emit('actions', { t: 'upload-progress', v: { id, percent, status } })
-  // 更新总体进度条
-  const rate = (1 / props.list.length) * 100
-  const index = props.list.findIndex((f: any) => f.id == id)
-  const val = parseFloat(((index * rate + rate * percent) / 100).toFixed(2))
-  progress.value = val
-  // 上传完成后刷新列表
-  if (val == 1) {
-    uploading.value = false
-    emit('actions', { t: 'refresh-list', v: {} })
-  }
-}
+// const onProgress = (id: string, percent: number, status: boolean) => {
+//   // 更新单项进度条
+//   emit('actions', { t: 'upload-progress', v: { id, percent, status } })
+//   // 更新总体进度条
+//   const rate = (1 / props.list.length) * 100
+//   const index = props.list.findIndex((f: any) => f.id == id)
+//   const val = parseFloat(((index * rate + rate * percent) / 100).toFixed(2))
+//   progress.value = val
+//   // 上传完成后刷新列表
+//   if (val == 1) {
+//     uploading.value = false
+//     emit('actions', { t: 'refresh-list', v: {} })
+//   }
+// }
 
 watch(
   () => props.list,
@@ -128,22 +134,27 @@ watch(
   position: relative;
   padding: 10px;
   width: calc(100% - 20px);
+
   .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-bottom: 10px;
+
     .options {
       display: flex;
     }
   }
+
   .progress {
     padding-top: 10px;
   }
 }
+
 :deep(.arco-table-tr) {
   background-image: linear-gradient(to bottom right, var(--color-bg-1), var(--color-neutral-1));
 }
+
 :deep(.arco-table-size-small .arco-table-td) {
   font-size: 12px;
   color: var(--color-text-2) !important;

@@ -1,14 +1,7 @@
 <template>
-  <VueDragSplit
-    ref="vueDragSplitRef"
-    v-model:windowListSync="windowList"
-    v-model:activeTabKeySync="activeTabKey"
-    :generateWindowConfig="generateWindowConfig"
-    @closeWindow="onCloseWindow"
-    @resize="onResize"
-    @dragEnd="onDragend"
-  >
-    <template #TabView="win">
+  <VueDragSplit ref="vueDragSplitRef" v-model:windowListSync="windowList" v-model:activeTabKeySync="activeTabKey"
+    :generateWindowConfig="generateWindowConfig" @closeWindow="onCloseWindow" @resize="onResize" @dragEnd="onDragend">
+    <template #TabView>
       <Xterm />
     </template>
     <!-- <template #Tab="win">
@@ -47,7 +40,7 @@ const vueDragSplitRef = ref<any>('')
 const activeTabKey = ref('')
 const windowList = ref([])
 
-const generateWindowConfig = (params: any) => {
+const generateWindowConfig = (_params: any) => {
   return {
     key: Date.now(),
     label: '标签' + Date.now(),
@@ -58,10 +51,10 @@ const onResize = () => {
   Debounce(() => appStore.onResize(GUID()))()
   // appStore.onResize(GUID())
 }
-const onDragend = (params: any) => {
+const onDragend = (_params: any) => {
   // console.log('onDragend :>> ', params)
 }
-const onCloseWindow = (params: any) => {
+const onCloseWindow = (_params: any) => {
   // console.log('onCloseWindow :>> ', params)
 }
 

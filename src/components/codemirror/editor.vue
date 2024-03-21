@@ -6,14 +6,16 @@
         <template #icon><icon-palette /></template>
         <template #default>语言</template>
         <template #content>
-          <a-doption v-for="lang in langs" :key="lang.label" :value="`lang-${lang.value}`"> {{ lang.label }} </a-doption>
+          <a-doption v-for="lang in langs" :key="lang.label" :value="`lang-${lang.value}`"> {{ lang.label }}
+          </a-doption>
         </template>
       </a-dsubmenu>
       <a-dsubmenu>
         <template #icon><icon-palette /></template>
         <template #default>主题</template>
         <template #content>
-          <a-doption v-for="theme in themes" :key="theme.label" :value="`theme-${theme.value}`"> {{ theme.label }} </a-doption>
+          <a-doption v-for="theme in themes" :key="theme.label" :value="`theme-${theme.value}`"> {{ theme.label }}
+          </a-doption>
         </template>
       </a-dsubmenu>
     </template>
@@ -21,7 +23,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, render, createApp } from 'vue'
+import { ref, onMounted, createApp } from 'vue'
 import { autocompletion, closeBrackets, closeBracketsKeymap, completionKeymap } from '@codemirror/autocomplete'
 import { defaultKeymap, history, historyKeymap } from '@codemirror/commands'
 import { bracketMatching, defaultHighlightStyle, foldGutter, foldKeymap, indentOnInput, syntaxHighlighting } from '@codemirror/language'
@@ -30,7 +32,7 @@ import { EditorState } from '@codemirror/state'
 import { highlightSelectionMatches, search } from '@codemirror/search' //searchKeymap,
 import { crosshairCursor, drawSelection, dropCursor, EditorView, highlightActiveLine, highlightActiveLineGutter, highlightSpecialChars, keymap, lineNumbers, rectangularSelection } from '@codemirror/view'
 import SearchPanel from './search-replace/search-panel.vue'
-import { nord, xcodeDark, dracula, bbedit, material, githubDark, githubLight, solarizedLight, vscodeDark, xcodeLight } from './themes/index'
+// import { nord, xcodeDark, dracula, bbedit, material, githubDark, githubLight, solarizedLight, vscodeDark, xcodeLight } from './themes/index'
 import { useThemes } from './themes/themes'
 import { useLangs } from './langs/langs'
 import { useSearchReplace } from './search-replace/search-replace'

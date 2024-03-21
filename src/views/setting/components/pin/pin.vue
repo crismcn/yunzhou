@@ -1,7 +1,7 @@
 <template>
   <a-popover trigger="click">
     <a-space size="medium">
-      <div class="right" v-for="i in 6"></div>
+      <div class="right" v-for="i in 6" :key="i"></div>
     </a-space>
     <template #content>
       <a-space direction="vertical">
@@ -32,10 +32,10 @@ import { ref } from 'vue'
 
 //
 const title = ref('设置PIN')
-const pin = ref('')
-const onClick = () => {
-  // console.log('123456')
-}
+// const pin = ref('')
+// const onClick = () => {
+//   // console.log('123456')
+// }
 </script>
 
 <style lang="less" scoped>
@@ -45,6 +45,7 @@ const onClick = () => {
   background-color: var(--color-fill-2);
   border-radius: var(--border-radius-small);
   cursor: pointer;
+
   &:hover {
     background-color: var(--color-fill-3);
   }
@@ -54,12 +55,14 @@ const onClick = () => {
   font-size: 14px;
   color: var(--color-text-2);
 }
+
 .label {
   width: 48px;
   font-size: 12px;
   color: var(--color-text-2);
   text-align: right;
 }
+
 .option {
   float: right;
   margin-top: 10px;

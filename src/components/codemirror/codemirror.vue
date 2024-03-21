@@ -17,7 +17,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
 import Editor from './editor.vue'
 import Tabs from './tabs.vue'
 </script>

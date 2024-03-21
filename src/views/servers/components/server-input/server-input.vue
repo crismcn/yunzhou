@@ -54,7 +54,7 @@ defineExpose({ reset });
 onMounted(() => {
   form.value = props.modelValue
 })
-watch(() => props.modelValue, (newValue, oldValue) => {
+watch(() => props.modelValue, (newValue, _oldValue) => {
   form.value = newValue
 })
 </script>

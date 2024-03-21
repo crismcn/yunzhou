@@ -34,8 +34,10 @@
         </a-button>
       </a-space>
     </div>
-    <div class="download-content" @mousedown="onMousedown" @mousemove="onMousemove" @mouseup="onMouseup" @mouseleave="onMouseup">
-      <a-table ref="tableRef" v-model:selectedKeys="selectedKeys" @row-click="onRowClick" :data="tabelData" row-key="id" size="small" :virtual-list-props="{ height: 662 }" :pagination="false" :bordered="false">
+    <div class="download-content" @mousedown="onMousedown" @mousemove="onMousemove" @mouseup="onMouseup"
+      @mouseleave="onMouseup">
+      <a-table ref="tableRef" v-model:selectedKeys="selectedKeys" @row-click="onRowClick" :data="tabelData" row-key="id"
+        size="small" :virtual-list-props="{ height: 662 }" :pagination="false" :bordered="false">
         <template #columns>
           <a-table-column title="名称">
             <template #cell="{ record }">
@@ -52,7 +54,8 @@
           </a-table-column>
           <a-table-column title="状态" :width="200">
             <template #cell="{ record }">
-              <a-progress :percent="progressPercent(record)" track-color="var(--color-fill-3)" :color="['var(--color-neutral-5)', 'rgb(var(--primary-6))'][record.status]" />
+              <a-progress :percent="progressPercent(record)" track-color="var(--color-fill-3)"
+                :color="['var(--color-neutral-5)', 'rgb(var(--primary-6))'][record.status]" />
             </template>
           </a-table-column>
         </template>
@@ -293,7 +296,7 @@ const onMousemove = (e: any) => {
   }
 }
 
-const onMouseup = (e: any) => {
+const onMouseup = (_e: any) => {
   /* ------- 初始化画框配置 ------- */
   caclcell.value = false
   mousedown.value = false
@@ -334,6 +337,7 @@ onActivated(() => {
 <style lang="less" scoped>
 .download-list {
   position: relative;
+
   .download-header {
     position: sticky;
     top: 0;
@@ -357,37 +361,45 @@ onActivated(() => {
   .download-content {
     position: relative;
     padding: 0 12px;
+
     .empty {
       position: absolute;
       top: 0;
       left: 0;
       padding-top: 248px;
     }
+
     .region {
       position: fixed;
       z-index: 10;
       border: 1px solid rgb(var(--primary-6));
       background-color: rgba(0, 148, 255, 0.1);
     }
+
     .record-id {
       position: relative;
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       .name {
         width: calc(100% - 120px);
       }
+
       .options {
         opacity: 0;
       }
     }
+
     .size {
       font-size: 11.5px;
       color: var(--color-text-2);
     }
+
     .progress {
       position: relative;
       padding-top: 10px;
+
       .text {
         position: absolute;
         top: 2px;
@@ -395,6 +407,7 @@ onActivated(() => {
         color: var(--color-text-3);
       }
     }
+
     :deep(.arco-table-th) {
       font-size: 13px;
       line-height: 26px;
@@ -402,18 +415,23 @@ onActivated(() => {
       border-top: solid 1px var(--color-border);
       border-bottom: solid 1px var(--color-border);
     }
+
     :deep(.arco-table-header) {
       background: none;
     }
+
     :deep(.arco-table-body) {
       background-color: transparent !important;
     }
+
     :deep(.arco-table-td) {
       background: none;
     }
+
     :deep(.arco-table-tr-checked .arco-table-td) {
       background-color: var(--color-fill-2);
     }
+
     :deep(.arco-table-tr:hover) {
       .options {
         opacity: 1;

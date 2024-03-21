@@ -1,17 +1,8 @@
 <template>
-  <VueDragSplit
-    ref="vueDragSplitRef"
-    v-model:windowListSync="windowList"
-    v-model:activeTabKeySync="activeTabKey"
-    :generateWindowConfig="generateWindowConfig"
-    :createAddBtn="createAddBtn"
-    :createClose="createClose"
-    :createTab="createTab"
-    :createTabView="createTabView"
-    @closeWindow="onCloseWindow"
-    @resize="onResize"
-    @dragEnd="onDragend"
-  >
+  <VueDragSplit ref="vueDragSplitRef" v-model:windowListSync="windowList" v-model:activeTabKeySync="activeTabKey"
+    :generateWindowConfig="generateWindowConfig" :createAddBtn="createAddBtn" :createClose="createClose"
+    :createTab="createTab" :createTabView="createTabView" @closeWindow="onCloseWindow" @resize="onResize"
+    @dragEnd="onDragend">
   </VueDragSplit>
 </template>
 
@@ -24,14 +15,14 @@ const vueDragSplitRef = ref<any>('')
 const activeTabKey = ref('')
 const windowList = ref([])
 
-const generateWindowConfig = (params: any) => {
+const generateWindowConfig = (_params: any) => {
   return {
     key: Date.now(),
     label: '标签' + Date.now(),
   }
 }
 
-const createAddBtn = (win: any) => {
+const createAddBtn = (_win: any) => {
   return h(
     'div',
     {
@@ -42,7 +33,7 @@ const createAddBtn = (win: any) => {
     '+'
   )
 }
-const createClose = (win: any) => {
+const createClose = (_win: any) => {
   return h(
     'div',
     {
@@ -56,18 +47,18 @@ const createTab = (win: { label: string }) => {
 }
 const createTabView = (win: {
   key:
-    | string
-    | number
-    | boolean
-    | VNode<RendererNode, RendererElement, { [key: string]: any }>
-    | VNodeArrayChildren
-    | (() => any)
-    | { [name: string]: unknown; $stable?: boolean | undefined }
-    | undefined
+  | string
+  | number
+  | boolean
+  | VNode<RendererNode, RendererElement, { [key: string]: any }>
+  | VNodeArrayChildren
+  | (() => any)
+  | { [name: string]: unknown; $stable?: boolean | undefined }
+  | undefined
 }) => {
   return h('div', null, [h('h3', { style: { color: '#a5a5fa' } }, win.key)])
 }
-const createNewWindow = (params: any) => {
+const createNewWindow = (_params: any) => {
   vueDragSplitRef.value.newWindow({
     key: Date.now(),
     label: '标签' + vueDragSplitRef.value.windowList.length,
@@ -97,17 +88,20 @@ const onDragend = (params: any) => {
     text-align: center;
     line-height: 18px;
     margin: 3px 0;
+
     &:hover {
       color: crimson;
       background: white;
       border-radius: 50%;
     }
   }
+
   .add_btn_cus {
     cursor: pointer;
     padding: 0 10px;
     background: rgb(59, 59, 59);
     color: white;
+
     &:hover {
       color: #008ae1;
     }

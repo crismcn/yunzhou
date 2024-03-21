@@ -2,7 +2,8 @@
   <div ref="scrollRef" @scroll="onScroll" class="deploy-timeline">
     <a-timeline v-bind="deployPending" mode="alternate">
       <a-watermark v-bind="watermarkCfg" content="部署历史">
-        <a-timeline-item v-for="item in deployLogList" :key="item.id" @click="onSelectLog(item)" :dotColor="['#00B42A', '#F53F3F'][item.status]">
+        <a-timeline-item v-for="item in deployLogList" :key="item.id" @click="onSelectLog(item)"
+          :dotColor="['#00B42A', '#F53F3F'][item.status]">
           <a-popover trigger="click" position="top">
             <div class="timeline-item-content">
               <div class="timeline-item-title">
@@ -120,7 +121,7 @@ const watermarkCfg: any = ref({
 })
 
 const showPanel = ref(false)
-const onSelectLog = (e: any) => {
+const onSelectLog = (_e: any) => {
   showPanel.value = true
 }
 

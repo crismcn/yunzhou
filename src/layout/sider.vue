@@ -12,7 +12,7 @@ import Menus from '@/layout/components/menus/menus.vue'
 import Options from '@/layout/components/options/options.vue'
 import WindowControls from '@/layout/components/window-controls/window-controls.vue'
 import Lottie from '@/components/lottie/lottie.vue'
-import Evening from '@/assets/lottie/evening.json'
+// import Evening from '@/assets/lottie/evening.json'
 import Daytime from '@/assets/lottie/daytime.json'
 </script>
 
@@ -23,6 +23,7 @@ import Daytime from '@/assets/lottie/daytime.json'
   box-shadow: none;
   background-color: var(--color-bg-1);
   border-right: solid @border-1 var(--color-neutral-2);
+
   .bg {
     width: 1100px;
     position: absolute;

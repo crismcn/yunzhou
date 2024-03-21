@@ -1,5 +1,6 @@
 <template>
-  <div id="xsftp" ref="dragRef" @drop="handleDrop" @dragleave="onDragLeave" @dragenter="onDragOver" @dragover="onDragOver" class="xsftp-box">
+  <div id="xsftp" ref="dragRef" @drop="handleDrop" @dragleave="onDragLeave" @dragenter="onDragOver"
+    @dragover="onDragOver" class="xsftp-box">
     <div class="xsftp-header">
       <PathTrail v-model="routes" @change="cdDir"></PathTrail>
       <ToolsBar @actions="onActions"></ToolsBar>
@@ -13,13 +14,15 @@
     </div>
 
     <!-- 弹窗会话框 -->
-    <a-drawer popup-container="#container" placement="bottom" :visible="visible == 'openUploader'" :footer="false" :height="709" @cancel="visible = false" style="z-index: 2">
+    <a-drawer popup-container="#container" placement="bottom" :visible="visible == 'openUploader'" :footer="false"
+      :height="709" @cancel="visible = false" style="z-index: 2">
       <template #title> {{ $t('xsftp.upload-to.tip') }} 【 {{ pathRoute }} 】 </template>
       <div>
         <UploadList :list="uploadFileList" @actions="onActions"></UploadList>
       </div>
     </a-drawer>
-    <a-drawer popup-container="#container" placement="bottom" :title="$t('xsftp.recycle.tip')" :visible="visible == 'openRecycleBin'" :footer="false" :height="709" @cancel="visible = false" style="z-index: 2">
+    <a-drawer popup-container="#container" placement="bottom" :title="$t('xsftp.recycle.tip')"
+      :visible="visible == 'openRecycleBin'" :footer="false" :height="709" @cancel="visible = false" style="z-index: 2">
       <div>
         <RecycleBin v-if="visible == 'openRecycleBin'" @actions="onActions"></RecycleBin>
       </div>
@@ -190,27 +193,27 @@ const cancelUpload = () => {
 }
 
 const emit = defineEmits(['update:sftpId'])
-const closeSftp = async () => {}
+const closeSftp = async () => { }
 
 /* ------------------------ 重命名 ------------------------------ */
-const onRename = async (e: any) => {}
+const onRename = async (_e: any) => { }
 /* ------------------------ 压缩 ------------------------------ */
-const onCompress = async (e: any) => {}
+const onCompress = async (_e: any) => { }
 /* ------------------------ 下载 ------------------------------ */
 
-const onDownload = async (e: any) => {}
-const refreshDownLoadList = async () => {}
+const onDownload = async (_e: any) => { }
+// const refreshDownLoadList = async () => { }
 
 /* ------------------------ 删除文件 ------------------------------ */
-const deleteFile = async (e: any) => {}
+const deleteFile = async (_e: any) => { }
 
-const addUploadFiles = async (list: any) => {}
+const addUploadFiles = async (_list: any) => { }
 
 /* ------------------------ 拷贝/剪切 - 粘贴文件 ------------------------------ */
 const copyFileInfo = ref<any>({})
 provide('copyFileInfo', copyFileInfo)
-const onCopy = async (t: string, e: any) => {}
-const onPaste = async () => {}
+const onCopy = async (_t: string, _e: any) => { }
+const onPaste = async () => { }
 
 /* ------------------------ 上传文件 ------------------------------ */
 const onProgress = async (e: any) => {
@@ -231,12 +234,14 @@ const onProgress = async (e: any) => {
   flex: 1;
   z-index: 1;
   overflow-x: hidden;
+
   .xsftp-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     box-sizing: border-box;
   }
+
   .drag-box {
     position: absolute;
     top: 0;
@@ -247,18 +252,22 @@ const onProgress = async (e: any) => {
     display: flex;
     align-items: center;
     justify-content: center;
+
     :deep(.arco-spin-icon) {
       color: white;
     }
+
     :deep(.arco-spin-tip) {
       color: white;
     }
   }
+
   .drag-hover {
     z-index: 1;
     color: white;
     background-color: var(--color-mask-bg);
   }
+
   .drag-leave {
     z-index: -10;
     color: transparent;

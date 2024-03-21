@@ -1,20 +1,26 @@
 <template>
-  <a-drawer popup-container="#layoutContent" :visible="visible" width="100%" :mask="false" unmountOnClose @cancel="onClose">
+  <a-drawer popup-container="#layoutContent" width="100%" :mask="false" unmountOnClose @cancel="onClose">
     <template #title>
       <a-space class="title" data-tauri-drag-region><icon-edit /> {{ $t('application.title.add') }}</a-space>
     </template>
-    <a-carousel :current="carouselIndex" class="container" animation-name="fade" show-arrow="never" direction="vertical">
+    <a-carousel :current="carouselIndex" class="container" animation-name="fade" show-arrow="never"
+      direction="vertical">
       <a-carousel-item>
         <a-form ref="formRef" class="content" size="large" :model="form" :auto-label-width="true">
-          <a-form-item field="localPath" label="" class="c-form-item" :rules="[{ required: true, message: $t('application.localPath.placeholder') }]" :validate-trigger="['change', 'input']">
+          <a-form-item field="localPath" label="" class="c-form-item"
+            :rules="[{ required: true, message: $t('application.localPath.placeholder') }]"
+            :validate-trigger="['change', 'input']">
             <div class="c-item-label">{{ $t('application.localPath') }}</div>
             <SelectDirectory v-model="form.localPath" :dialogTitle="$t('application.localPath.placeholder')" />
           </a-form-item>
-          <a-form-item field="name" label="" class="c-form-item" :rules="[{ required: true, message: $t('application.name.placeholder') }]" :validate-trigger="['change', 'input']">
+          <a-form-item field="name" label="" class="c-form-item"
+            :rules="[{ required: true, message: $t('application.name.placeholder') }]"
+            :validate-trigger="['change', 'input']">
             <div class="c-item-label">{{ $t('application.name') }}</div>
             <a-input v-model="form.name" :placeholder="$t('application.name.placeholder')" />
           </a-form-item>
-          <a-form-item field="buildCmd" label="" class="c-form-item" :rules="[{ required: true, message: $t('application.buildCmd.tip') }]" :validate-trigger="['change']">
+          <a-form-item field="buildCmd" label="" class="c-form-item"
+            :rules="[{ required: true, message: $t('application.buildCmd.tip') }]" :validate-trigger="['change']">
             <div class="c-item-label">{{ $t('application.buildCmd') }}</div>
             <a-input v-model="form.buildCmd" :placeholder="$t('application.buildCmd.placeholder')" allow-clear />
           </a-form-item>
@@ -40,9 +46,12 @@
       </a-carousel-item>
       <a-carousel-item>
         <a-form ref="serverFormRef" class="content" size="large" :model="serverForm" :auto-label-width="true">
-          <a-form-item field="servers" label="" class="c-form-item" :rules="[{ required: true, message: $t('application.servers.placeholder') }]" :validate-trigger="['change', 'input']">
+          <a-form-item field="servers" label="" class="c-form-item"
+            :rules="[{ required: true, message: $t('application.servers.placeholder') }]"
+            :validate-trigger="['change', 'input']">
             <div class="c-item-label">{{ $t('application.servers') }}</div>
-            <a-select v-model="serverForm.servers" :options="serversDicts" :placeholder="$t('application.servers.placeholder')" multiple />
+            <a-select v-model="serverForm.servers" :options="serversDicts"
+              :placeholder="$t('application.servers.placeholder')" multiple />
           </a-form-item>
 
           <a-form-item class="c-form-item" v-if="serverForm.servers.length == 0">
@@ -54,7 +63,7 @@
               <a-input readonly placeholder="部署命令" style="margin-left: -2px; width: 70%" />
             </a-form-item>
           </a-form-item>
-          <a-form-item class="c-form-item" v-for="(server, index) in serverForm.servers" :key="server">
+          <a-form-item class="c-form-item" v-for="server in serverForm.servers" :key="server">
             <div class="c-item-label">{{ server }}</div>
             <a-form-item no-style>
               <a-input placeholder="/home/web/test-server" />
@@ -70,8 +79,10 @@
     <template #footer>
       <a-space class="footer">
         <a-button-group>
-          <a-button :disabled="carouselIndex == 1" @click="carouselIndex = 1"> <icon-left />{{ $t('application.op.back') }} </a-button>
-          <a-button :disabled="carouselIndex == 2" @click="carouselIndex = 2"> {{ $t('application.op.next') }}<icon-right /> </a-button>
+          <a-button :disabled="carouselIndex == 1" @click="carouselIndex = 1"> <icon-left />{{ $t('application.op.back')
+            }} </a-button>
+          <a-button :disabled="carouselIndex == 2" @click="carouselIndex = 2"> {{ $t('application.op.next')
+            }}<icon-right /> </a-button>
         </a-button-group>
         <a-button @click="onOk" :loading="loading" :disabled="carouselIndex == 1" type="primary">
           <template #icon>
@@ -88,12 +99,6 @@
 import { ref } from 'vue'
 import SelectDirectory from '@/components/select-directory/select-directory.vue'
 
-defineProps({
-  visible: {
-    type: Boolean,
-    default: false,
-  },
-})
 const emits = defineEmits(['update:visible'])
 
 const marks = {

@@ -3,14 +3,10 @@
     <div class="transfer" data-tauri-drag-region>
       <a-space size="medium">
         R：
-        <a-progress
-          type="circle"
-          :percent="0.79"
-          :color="{
-            '0%': 'rgb(var(--success-4))',
-            '100%': 'rgb(var(--warning-3))',
-          }"
-        />
+        <a-progress type="circle" :percent="0.79" :color="{
+          '0%': 'rgb(var(--success-4))',
+          '100%': 'rgb(var(--warning-3))',
+        }" />
         <a-space class="rate" direction="vertical">
           <a-space class="arrow-up"><icon-arrow-up /> 1.2K/s</a-space>
           <a-space class="arrow-down"><icon-arrow-down /> 12.3K/s</a-space>
@@ -19,12 +15,14 @@
     </div>
     <div style="overflow: auto; height: calc(100vh - 100px)">
       <div class="tabs">
-        <div class="tabs-item" @click="selectItme(index)" v-for="(item, index) in tabs" :key="item.label" :class="{ 'tabs-item--active': activeIndex == index }">
+        <div class="tabs-item" @click="selectItme(index)" v-for="(item, index) in tabs" :key="item.label"
+          :class="{ 'tabs-item--active': activeIndex == index }">
           <div class="tabs-item-dot" :class="{ 'tabs-item-dot--active': activeIndex == index }"></div>
           <a-space size="medium">
             <IconFont :name="item.icon" :size="24"></IconFont>
             <span>{{ item.label }}</span>
-            <a-badge :count="item.num" :max-count="99" :dotStyle="{ background: 'var(--color-neutral-3)', color: 'var(--color-text-1)' }" />
+            <a-badge :count="item.num" :max-count="99"
+              :dotStyle="{ background: 'var(--color-neutral-3)', color: 'var(--color-text-1)' }" />
           </a-space>
         </div>
       </div>
@@ -34,13 +32,13 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { useServerStore } from '@/store'
+// import { useServerStore } from '@/store'
 import IconFont from '@/components/iconfont/iconfont.vue'
 
-const serverStore = useServerStore()
-const add = () => {
-  serverStore.showServerInfo = true
-}
+// const serverStore = useServerStore()
+// const add = () => {
+//   serverStore.showServerInfo = true
+// }
 const tabs = ref([
   {
     label: '上传',
