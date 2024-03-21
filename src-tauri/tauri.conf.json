@@ -19,11 +19,16 @@
       },
       "window": {
         "all": true
+      },
+      "app": {
+        "all": true,
+        "show": true,
+        "hide": true
       }
     },
     "windows": [
       {
-        "title": "tauri-test",
+        "title": "YunZhou",
         "minWidth": 1200,
         "minHeight": 768,
         "decorations": false,
@@ -32,6 +37,11 @@
         "label": "customization"
       }
     ],
+    "systemTray": {
+      "iconPath": "icons/icon.png",
+      "iconAsTemplate": true,
+      "title": "YunZhou"
+    },
     "security": {
       "csp": null
     },

@@ -47,6 +47,8 @@ import { IconMoon, IconSun, IconDesktop } from '@arco-design/web-vue/es/icon'
 import { useRouter } from 'vue-router'
 import { useAppStore } from '@/store'
 import useLocale from '@/hooks/locale'
+import { exit } from '@tauri-apps/api/process';
+
 
 const router = useRouter()
 const appStore = useAppStore()
@@ -69,9 +71,9 @@ const onSelect = async (e: any) => {
     case 'lock':
       appStore.setLock(true)
       break
-    case 'mini':
-      break
+
     case 'exit':
+      await exit(1);
       break
     default:
       break
@@ -120,6 +122,7 @@ const onChangeLocale = () => {
   justify-content: center;
   box-sizing: border-box;
   z-index: 2;
+
   .arco-icon {
     cursor: pointer;
     margin: 14px;
@@ -137,17 +140,21 @@ const onChangeLocale = () => {
 .arco-dropdown-option:hover .arco-icon {
   animation: shake 0.17s 2;
 }
+
 @keyframes shake {
+
   0%,
   90%,
   100% {
     transform: rotate(0) scale(1);
   }
+
   20%,
   40% {
     transform: scale(1.2);
     // transform: rotate(-15deg) scale(1.2);
   }
+
   30%,
   50% {
     transform: scale(1.2);

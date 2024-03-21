@@ -14,9 +14,22 @@
 
 <script lang="ts" setup>
 import IconFont from '@/components/iconfont/iconfont.vue'
+import { appWindow } from '@tauri-apps/api/window';
 
-const onClick = (e: any) => {
-  console.log(e)
+const onClick = async (e: any) => {
+  switch (e) {
+    case 0:
+      await appWindow.hide()
+      break
+    case 1:
+      await appWindow.minimize()
+      break
+    default:
+      {
+        const isMaximized = await appWindow.isMaximized();
+        isMaximized ? await appWindow.unmaximize() : await appWindow.maximize()
+      }
+  }
 }
 </script>
 
@@ -37,6 +50,7 @@ const onClick = (e: any) => {
 
   &:hover {
     .control-dot {
+
       .arco-icon,
       .option-dot {
         opacity: 0.6;
