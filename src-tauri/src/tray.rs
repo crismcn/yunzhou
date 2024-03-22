@@ -27,7 +27,7 @@ fn tray_menu_en_us() -> tauri::SystemTrayMenu {
     let lock = CustomMenuItem::new("lock".to_string(), "Lock");
     SystemTrayMenu::new()
         .add_submenu(SystemTraySubmenu::new(
-            "Language", // 语言菜单
+            "Language",
             SystemTrayMenu::new()
                 .add_item(CustomMenuItem::new("lang_en_US".to_string(), "English").selected())
                 .add_item(CustomMenuItem::new("lang_zh_CN".to_string(), "Chinese")),
