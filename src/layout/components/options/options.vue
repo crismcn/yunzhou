@@ -1,7 +1,7 @@
 <template>
   <div class="options" data-tauri-drag-region>
-    <icon-translate @click="onChangeLocale" />
-    <IconTheme @click="onChangeTheme" />
+    <icon-translate @click="onChangeLocale()" />
+    <IconTheme @click="onChangeTheme()" />
     <a-dropdown position="tl" trigger="click" @select="onSelect" :popup-max-height="false">
       <icon-command />
       <template #content>
@@ -95,18 +95,29 @@ const IconTheme: any = {
 }
 
 const onChangeTheme = () => {
-  if (theme.value == 'dark') {
-    theme.value = 'light'
-    document.body.removeAttribute('arco-theme')
-  } else if (theme.value == 'light') {
-    theme.value = 'dark'
-    document.body.setAttribute('arco-theme', 'dark')
+  let t = theme.value == 'light' ? 'dark' : 'light'
+  setTheme(t)
+}
+
+const setTheme = (t: string) => {
+  switch (t) {
+    case 'light':
+      theme.value = 'light'
+      document.body.removeAttribute('arco-theme')
+      break
+    case 'dark':
+      theme.value = 'dark'
+      document.body.setAttribute('arco-theme', 'dark')
+      break
+    case 'auto':
+    // TODO DEV
   }
 }
 
 const { changeLocale, currentLocale } = useLocale()
-const onChangeLocale = () => {
-  const locale = currentLocale.value == 'en-US' ? 'zh-CN' : 'en-US'
+const onChangeLocale = (lang?: string) => {
+  let locale = currentLocale.value == 'en-US' ? 'zh-CN' : 'en-US'
+  if (lang) locale = lang
   changeLocale(locale)
   appStore.setLocale(locale)
 }
@@ -116,12 +127,18 @@ const unlisten = ref<any>(() => { })
 onMounted(async () => {
   unlisten.value = await listen('sys', (p: any) => {
     const { payload } = p
-    const { t } = payload
+    const { t, v } = payload
     // const { id, payload } = p
     // const { t, v } = payload
     switch (t) {
       case 'lock':
         appStore.setLock(true)
+        break
+      case 'lang':
+        onChangeLocale(v)
+        break
+      case 'theme':
+        setTheme(v.split('_')[1])
         break
     }
   })

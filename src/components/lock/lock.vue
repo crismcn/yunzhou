@@ -44,6 +44,9 @@ const onFinish = (e: any) => {
   animation: blur 0.35s forwards;
   animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
   z-index: 999;
+  pointer-events: none;
+  user-select: none;
+
   .content {
     width: 396px;
     display: flex;
@@ -55,10 +58,12 @@ const onFinish = (e: any) => {
     border-radius: 2px;
     box-sizing: border-box;
     animation: fade 0.35s forwards;
+
     .lottie {
       width: 120px;
       height: 120px;
     }
+
     .text {
       font-size: 12px;
       padding-bottom: 20px;
@@ -70,6 +75,7 @@ const onFinish = (e: any) => {
   0% {
     backdrop-filter: blur(0px);
   }
+
   100% {
     backdrop-filter: blur(40px);
   }
@@ -79,6 +85,7 @@ const onFinish = (e: any) => {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -88,6 +95,7 @@ const onFinish = (e: any) => {
 .fade-leave-active {
   transition: opacity 0.75s ease;
 }
+
 // .fade-leave-from,
 .fade-enter-to {
   opacity: 1;
