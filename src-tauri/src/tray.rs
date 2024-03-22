@@ -3,10 +3,16 @@ use tauri::{
     SystemTrayMenuItem, SystemTraySubmenu,
 };
 
+#[derive(Clone, serde::Serialize)]
+struct Payload {
+    t: String,
+    v: String,
+}
+
 // 托盘菜单
 pub fn menu() -> SystemTray {
     let quit = CustomMenuItem::new("quit".to_string(), "Quit");
-    let hide = CustomMenuItem::new("hide".to_string(), "Hide");
+    let show = CustomMenuItem::new("show".to_string(), "Show");
     let lock = CustomMenuItem::new("lock".to_string(), "Lock");
     let tray_menu = SystemTrayMenu::new()
         .add_submenu(SystemTraySubmenu::new(
@@ -18,7 +24,7 @@ pub fn menu() -> SystemTray {
         .add_native_item(SystemTrayMenuItem::Separator) // 分割线
         .add_item(lock)
         .add_native_item(SystemTrayMenuItem::Separator)
-        .add_item(hide)
+        .add_item(show)
         .add_native_item(SystemTrayMenuItem::Separator)
         .add_item(quit);
 
@@ -28,6 +34,16 @@ pub fn menu() -> SystemTray {
 // 托盘事件
 pub fn handler(app: &AppHandle, event: SystemTrayEvent) {
     match event {
+        SystemTrayEvent::LeftClick {
+            position: _,
+            size: _,
+            ..
+        } => {
+            let app_window = app.get_window("customization").unwrap();
+            app_window.unminimize().unwrap();
+            app_window.set_focus().unwrap();
+            app_window.show().unwrap();
+        }
         SystemTrayEvent::MenuItemClick { id, .. } => match id.as_str() {
             lang if lang.contains("lang_") => {
                 // 选择语言，匹配 id 前缀包含 `lang_` 的事件
@@ -53,21 +69,22 @@ pub fn handler(app: &AppHandle, event: SystemTrayEvent) {
                 //         include_bytes!("../icons/toolbox.png").to_vec(),
                 //     ))
                 //     .unwrap();
+                app.emit_all(
+                    "sys",
+                    Payload {
+                        t: "lock".into(),
+                        v: "Tauri is awesome!".into(),
+                    },
+                )
+                .unwrap();
             }
-            "hide" => {
-                let window = app.get_window("customization").unwrap();
-                let item_handle = app.tray_handle().get_item(&id);
-                if window.is_visible().unwrap() {
-                    window.hide().unwrap();
-                    item_handle.set_title("Show").unwrap();
-                } else {
-                    window.show().unwrap();
-                    item_handle.set_title("Hide").unwrap();
-                }
+            "show" => {
+                let app_window = app.get_window("customization").unwrap();
+                app_window.unminimize().unwrap();
+                app_window.set_focus().unwrap();
+                app_window.show().unwrap();
             }
-            "show" => app.get_window("customization").unwrap().show().unwrap(),
             "quit" => std::process::exit(0),
-
             _ => {}
         },
         _ => {}

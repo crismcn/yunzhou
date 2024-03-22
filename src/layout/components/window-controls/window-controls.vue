@@ -25,12 +25,11 @@ const onClick = async (e: any) => {
       await appWindow.minimize()
       break
     default:
-      {
-        const isMaximized = await appWindow.isMaximized();
-        isMaximized ? await appWindow.unmaximize() : await appWindow.maximize()
-      }
+      await appWindow.toggleMaximize();
   }
 }
+
+
 </script>
 
 <style lang="less" scoped>
@@ -48,31 +47,30 @@ const onClick = async (e: any) => {
   transition: all 0.25s;
   z-index: 1000;
 
-  &:hover {
-    .control-dot {
-
-      .arco-icon,
-      .option-dot {
-        opacity: 0.6;
-      }
-    }
-  }
-
   .control-dot {
     width: 12px;
     height: 12px;
     border-radius: 50%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
-    &:active {
-      opacity: 0.7;
-    }
-
     .arco-icon {
       vertical-align: 0;
       opacity: 0;
     }
+
+    &:hover {
+      .arco-icon {
+        opacity: 0.5;
+      }
+    }
+
+    &:active {
+      opacity: 0.5;
+    }
+
   }
+
+
 
   .close {
     background-color: #ff5f57;

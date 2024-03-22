@@ -42,12 +42,15 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, h } from 'vue'
+import { ref, h, onMounted } from 'vue'
+import { listen } from '@tauri-apps/api/event'
 import { IconMoon, IconSun, IconDesktop } from '@arco-design/web-vue/es/icon'
 import { useRouter } from 'vue-router'
 import { useAppStore } from '@/store'
 import useLocale from '@/hooks/locale'
 import { exit } from '@tauri-apps/api/process';
+import { onUnmounted } from 'vue'
+
 
 
 const router = useRouter()
@@ -107,6 +110,25 @@ const onChangeLocale = () => {
   changeLocale(locale)
   appStore.setLocale(locale)
 }
+
+
+const unlisten = ref<any>(() => { })
+onMounted(async () => {
+  unlisten.value = await listen('sys', (p: any) => {
+    const { payload } = p
+    const { t } = payload
+    // const { id, payload } = p
+    // const { t, v } = payload
+    switch (t) {
+      case 'lock':
+        appStore.setLock(true)
+        break
+    }
+  })
+})
+onUnmounted(async () => {
+  await unlisten.value()
+})
 </script>
 
 <style lang="less" scoped>
