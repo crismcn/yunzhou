@@ -29,12 +29,25 @@
     "windows": [
       {
         "title": "YunZhou",
+        "label": "main",
         "minWidth": 1200,
         "minHeight": 768,
         "decorations": false,
         "transparent": true,
         "center": true,
-        "label": "customization"
+        "visible": false
+      },
+      {
+        "title": "YunZhou",
+        "width": 100,
+        "height": 200,
+        "decorations": false,
+        "transparent": true,
+        "center": true,
+        "alwaysOnTop": true,
+        "visible": true,
+        "url": "/splashscreen.html",
+        "label": "splashscreen"
       }
     ],
     "systemTray": {

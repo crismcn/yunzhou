@@ -81,7 +81,7 @@ pub fn handler(app: &AppHandle, event: SystemTrayEvent) {
             size: _,
             ..
         } => {
-            let app_window = app.get_window("customization").unwrap();
+            let app_window = app.get_window("main").unwrap();
             app_window.unminimize().unwrap();
             app_window.set_focus().unwrap();
             app_window.show().unwrap();
@@ -145,7 +145,7 @@ pub fn handler(app: &AppHandle, event: SystemTrayEvent) {
                 .unwrap();
             }
             "show" => {
-                let app_window = app.get_window("customization").unwrap();
+                let app_window = app.get_window("main").unwrap();
                 app_window.unminimize().unwrap();
                 app_window.set_focus().unwrap();
                 app_window.show().unwrap();
