@@ -24,6 +24,6 @@ const locale = computed(() => {
 })
 
 onMounted(() => {
-  invoke('close_splashscreen')
+  // invoke('close_splashscreen')
 })
 </script>
