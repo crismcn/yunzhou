@@ -74,10 +74,12 @@ const onFinish = (e: any) => {
 @keyframes blur {
   0% {
     backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
   }
 
   100% {
     backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
   }
 }
 
